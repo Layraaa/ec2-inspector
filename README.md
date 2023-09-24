@@ -1,4 +1,4 @@
 # ec2-inspector
 EC2 Inspector
 
-https://youtu.be/gRxGqDhyyw0
+[https://youtu.be/gRxGqDhyyw0](https://www.youtube.com/watch?v=gRxGqDhyyw0)
