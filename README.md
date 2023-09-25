@@ -1,3 +1,3 @@
 # ec2-inspector
-![Captura de pantalla (1135)](https://github.com/Layraaa/ec2-inspector/assets/107069518/d8e5d769-e5de-4efc-b4a5-0c33ec1382eb)
+![Captura de pantalla (1135)](https://github.com/Layraaa/ec2-inspector/assets/107069518/b6817790-975b-42e3-92fa-7ee92bb5001d)
 [Video here](https://www.youtube.com/watch?v=zMIG6ueuM8w) - More details soon...
