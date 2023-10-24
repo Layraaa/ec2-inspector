@@ -10,7 +10,8 @@
 
 <p align="center">
   <a href="#description">Description</a> •
-  <a href="#key-features">Key Features</a>
+  <a href="#key-features">Key Features</a> •
+  <a href="#download-and-install">Download and Install</a>
 </p>
 
 <div align="center">
@@ -50,4 +51,18 @@ EC2 Inspector is a monitoring and forensic analysis tool. With this tool you wil
     - A service state changes, or when a new services is detected or a services is not detected anymore
 * Export data and history from monitored EC2 Instances
 
+
+## Download and install
+
+To clone this tool, you'll need [Git](https://git-scm.com) installed. From your command line:
+
+```bash
+# sudo su
+# git clone https://github.com/Layraaa/ec2-inspector
+# cd ec2-inspector
+# python3 -m venv env
+# source env/bin/activate
+# pip3 install -r requeriments.txt
+# gunicorn -w 12 --preload -b 0.0.0.0:5000 run:app
+```
 ---
