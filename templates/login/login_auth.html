@@ -1,0 +1,20 @@
+{% extends 'login/base.html' %}
+{% block body %}
+  <div class="row my-5 login">
+    <div class="col-12">
+      <h1 class="text-center">2FA Code</h1>
+    </div>
+    <div class="col-6 mx-auto">
+      <form action="/login/auth" method="POST">
+        <div class="row my-3">
+          <div class="col-12 formotp text-center">
+            <label for="otp">Enter your 2FA code:</label>
+            <input class="form-control all-corners" type="number" id="otp" name="otp" required>
+            <input class="btn btn-primary" type="submit" value="Verify OTP">
+            <a href="/" class="btn btn-danger">Go back</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

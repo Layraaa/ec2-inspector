@@ -1,0 +1,666 @@
+/* RESET */
+* { margin: 0; padding: 0; }
+
+/* WELCOME */
+.login{
+  background-color: lightgrey;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+/* GENERAL STRUCTURE */
+.main-container{
+  margin-bottom: 30px;
+}
+.header, .footer {
+  background-color: #2C2C2C;
+  color: #fff;
+  padding: 6px;
+}
+.header{
+  gap: 10px;
+}
+.header > h4{
+  margin-bottom: 0px;
+}
+.header > .spacer {
+  width: 2px;
+  height: 80%;
+  background-color: white;
+  margin: 0 10px;
+}
+
+#ec2-visor, #visorssmbutton, #ec2-ssm{
+  display: none;
+}
+
+.ec2-visor, .ec2-details, .ec2-ssm{
+  padding: 0px;
+  margin: 0px;
+}
+
+hr{
+  margin: 1.35rem 0 !important;
+}
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  padding: 4.5px;
+}
+
+/* Alert */
+
+.alertline{
+  margin: 1rem 0 !important;
+}
+
+#audio{
+  display: none !important;
+}
+
+/* EC2 DETAILS */
+
+/* Loading */
+#loading{
+  display: none;
+  position: fixed;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#loading > .row {
+  width: 50%;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 32px 0 #fff, -32px 0 #fff;
+  position: relative;
+  animation: flash 0.5s ease-out infinite alternate;
+  display: block;
+  margin: 0 auto;
+}
+
+  @keyframes flash {
+  0% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF;
+  }
+  50% {
+      background-color: #FFF;
+      box-shadow: 32px 0 #FFF2, -32px 0 #FFF2;
+  }
+  100% {
+      background-color: #FFF2;
+      box-shadow: 32px 0 #FFF, -32px 0 #FFF2;
+  }
+  }
+  
+.containerloading{
+  background-color: #949494;
+  padding: 20px;
+  border-radius: 20px;
+  border: solid lightgrey 5px;
+  color: black;
+}
+.containerloader{
+  background-color: black;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 20px;
+  width: 96px;
+}
+
+/* Graphics */
+.graphic{
+  display: flex;
+  cursor: grab;
+}
+
+/* Bar */
+.barec2details{
+  display: flex;
+  background-color: #4A4A4A;
+  color: white;
+  list-style: none;
+  padding: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.submenu{
+  display: none;
+  margin-bottom: 0px;
+  padding-left: 0px;
+}
+
+.columndisplay:hover > .submenu{
+  display: block;
+}
+
+.button{
+  border: solid 2px #4A4A4A;
+}
+
+.button, .button > ul > li{
+  padding: 7.5px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin: 4px;
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  background-color: #4A4A4A;
+}
+
+.button:hover{
+  background-color: white;
+  color: #4A4A4A;
+  border-radius: 20px;
+  border: solid 2px white;
+}
+
+.submenu > div{
+  border: solid 2px black;
+  padding: 5px;
+  display: inline-block;
+  list-style: none;
+  margin: 5px;
+}
+
+.onecol, .twocols, .threecols, .fourcols{
+  width: 60px;
+  height: 45px;
+}
+
+.onecol {
+  background-color: black;
+}
+
+.twocols {
+  background: linear-gradient(to right, 
+                              black 0%, black 40%, 
+                              white 40%, white 60%, 
+                              black 60%, black 100%);
+}
+.threecols {
+  background: linear-gradient(to right, 
+                              black 0%, black 26%, 
+                              white 26%, white 37%, 
+                              black 37%, black 63%,
+                              white 63%, white 74%, 
+                              black 74%, black 100%);
+}
+.fourcols {
+  background: linear-gradient(to right, 
+                              black 0%, black 19%, 
+                              white 19%, white 27%, 
+                              black 27%, black 46%,
+                              white 46%, white 54%, 
+                              black 54%, black 73%,
+                              white 73%, white 81%, 
+                              black 81%, black 100%);
+}
+
+/* EC2 VISOR */
+.all-instances, .information, .ssm-instances{
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 2px;
+}
+
+/* Bar */
+.barec2visor{
+  background-color: #4A4A4A;
+  padding: 5px;
+  align-items: center;
+  display: flex;
+}
+
+.barec2visor > select,  #barregionsec2details{
+  border: solid 2px white;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 4px;
+  background-color: #4A4A4A;
+  color: white;
+}
+
+.divider{
+  margin-left: auto !important;
+}
+
+#showandhideipsandids, #exportdata{
+  padding: 7.5px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  list-style: none;
+  text-decoration: none;
+  border: solid 2px #4A4A4A;
+  background-color: #4A4A4A;
+  color: white;
+}
+
+#showandhideipsandids:hover, #exportdata:hover{
+  background-color: white;
+  color: #4A4A4A;
+  border-radius: 20px;
+  border: solid 2px white;
+}
+
+.contentformexportdata{
+  padding: 5px;
+}
+
+/* Loader */
+.loadericon{
+  border: 5px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 5px solid #555;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: none;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+@keyframes spin{
+  0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+
+  100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+
+/* Alerts */
+.customalert{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 40%;
+}
+.customalert > .informationheader{
+  display: block;
+  width: 100%;
+  font-size: 20px;
+}
+
+/* Sidebar */
+.all-instances, .ssm-instances{
+  background-color: #dfdfdf;
+}
+.information, #informationpanel, #additionaldetailspanel{
+  background-color: #f1f1f1;
+}
+
+#all-instances details summary {
+  color: black;
+  cursor: pointer;
+  transition: .2s margin-bottom ease;
+  margin-bottom: 2px;
+}
+
+#all-instances details summary::before {
+  display: inline-block;
+  width: 1em;
+  font-weight: bold;
+}
+
+#all-instances details[open] summary::before {
+  content: '-';
+}
+
+#all-instances details:not([open]) summary::before {
+  content: '+';
+}
+
+#all-instances details[open] > summary {
+  margin-bottom: 5px;
+}
+
+#all-instances summary::-webkit-details-marker {
+  display: none;
+}
+
+#all-instances details > summary {
+  list-style: none;
+}
+
+/* All Instances */
+#instances > summary {
+  margin-left: 0px;
+}
+#instances > details > summary, #terminatedinstances > div {
+  margin-left: 10px;
+}
+#instances > details > details > summary {
+  margin-left: 20px;
+}
+#instances > details > details > details > summary {
+  margin-left: 30px;
+}
+#instances > details > details > details > div {
+  margin-left: 30px;
+  align-items: center;
+}
+
+#terminatedinstances > div{
+  align-items: center;
+}
+
+/* Instance */
+.instance {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px;
+}
+.idinstance, .ipinstance, .idinstancedead{
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ipinstance{
+  display: none;
+}
+.pending, .running, .shutting-down, .terminated, .stopping, .stopped{
+  border-radius: 4px;
+}
+.pending{
+  background-color: #FFEB9C;
+  border: 3px solid #FFEB9C;
+}
+.running{
+  background-color: #008000;
+  border: 3px solid #008000;
+}
+.shutting-down{
+  background-color: #FFA500;
+  border: 3px solid #FFA500;
+}
+.terminated{
+  background-color: #FF0000;
+  border: 3px solid #FF0000;
+}
+.stopping{
+  background-color: #ADD8E6;
+  border: 3px solid #ADD8E6;
+}
+.stopped{
+  background-color: #006DCD;
+  border: 3px solid #006DCD;
+}
+
+/* Information */
+.information{
+  display: flex;
+  flex-direction: column;
+}
+
+#informationpanel {
+  height: 75vh;
+}
+
+#informationpanel > .container-fluid > .row {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#additionaldetailspanel {
+  height: 25vh;
+}
+
+#additionaldetailspanel, #informationpanel{
+  overflow: auto;
+}
+
+#additionaldetailspanel::-webkit-scrollbar, #informationpanel::-webkit-scrollbar {
+  width: 4px;
+  margin-top: 2px;
+}
+
+#additionaldetailspanel::-webkit-scrollbar-track, #informationpanel::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+#additionaldetailspanel::-webkit-scrollbar-thumb, #informationpanel::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #777;
+}
+
+#draggable {
+  width: 60%;
+  height: 6px;
+  border-radius: 50px;
+  margin: auto;
+  margin-bottom: 20px;
+  cursor: ns-resize;
+  color: #777;
+  background-color: #777;
+}
+
+#imageid, #subnetid, #vpcid, .groupid, .interfaceid, .volumeid{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* EC2 SSM */
+
+#ssm-data{
+  overflow-y: auto;
+}
+
+#ssm-data-instance{
+  margin-bottom: 20px;
+}
+
+#processlsof{
+  margin-bottom: 15px;
+}
+
+.ssmhr{
+  margin: 1.65rem auto !important;
+  width: 50%;
+}
+
+table > :not(caption) > * > * {
+  background-color: transparent !important;
+}
+
+/* Bar */
+.barec2ssm{
+  background-color: #4A4A4A;
+  padding: 5px;
+  align-items: center;
+  display: flex;
+}
+
+#ssm-instances > div{
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 2px;
+  margin: 2px;
+  margin-top: 5px;
+}
+
+#ssm-instances > div > :first-child{
+  margin-left: 5px;
+}
+
+#ssm-instances > div > :last-child{
+  margin-right: 5px;
+}
+
+#ssm-instances * .btn{
+  --bs-btn-padding-x: 0.325rem;
+  --bs-btn-padding-y: 0.325rem;
+  margin: 2px;
+}
+
+/* Instances */
+#ssm-instances .hidden-important {
+  display: none !important;
+}
+
+#searchinstances{
+  width: 100%;
+  margin-top: 5px;
+  padding: 1px;
+  font-size: 0.9em;
+}
+
+/* Tables information SSM */
+
+#ssmmonitor-data > .div{
+  padding: 0px;
+}
+
+.ssm-table > .row > .row, .ssm-table > .row > details{
+  margin-bottom: 5px;
+}
+
+.ssm-table > .row > details > summary{
+  text-align: center;
+  font-size: 18px;
+}
+
+.ssmbuttons{
+  padding: 2.25px;
+}
+
+.controls{
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
+
+.controls > *{
+  margin: 0 auto;
+}
+
+.lsofblock{
+  white-space: break-spaces;
+  color: black;
+  overflow: auto;
+  max-height: 400px;
+  height: 400px;
+  width: 100%;
+  display: block;
+}
+
+/* SSM History and Monitor */
+#history, #monitor, #containerexportdata{
+  width: 90%;
+  position: absolute;
+  margin: auto;
+  height: 90%;
+  background-color: lightgray;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+#history{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#history > .row {
+  padding: 5px;
+}
+
+#monitor > div{
+  height: 100%;
+}
+
+#monitoreddata{
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.monitorrow > div{
+  margin: 7px 0px;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.fakeh3{
+  font-size: 1.75rem;
+}
+
+/* Failed logins */
+
+.child-row {
+  --bs-table-bg: #fff3f3;
+}
+
+.subchild-row {
+  background-color: #ffe9e9;
+}
+
+
+.child-row, .subchild-row {
+  display: none;
+}
+
+.child-row:hover, .parent-row:hover {
+  cursor: pointer;
+}
+
+#alertscontainer{
+  position: fixed;
+  padding: 5px;
+  top: 5px;
+  right: 5px;
+  width: 27%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 10px);
+  z-index: 30;
+}
+
+#alertscontainer > #alerts > .alert{
+  margin-bottom: 3px;
+  padding: 11px;
+}
+
+#alertscontainer::-webkit-scrollbar {
+  width: 4px;
+  margin-top: 2px;
+}
+
+#alertscontainer::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+#alertscontainer::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: #777;
+}

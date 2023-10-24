@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Francisco Javier Mestanza Rubia">
+    <meta name="description" content="EC2 Inspector base template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="starttime" content="{{ starttime }}">
+    <title>EC2 Inspector</title>
+    <link href="{{url_for('static', filename='general/ec2inspector.ico')}}" rel="icon"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='ec2inspector/base.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='general/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='general/fontawesome_all.min.css')}}">
+    <script src="{{url_for('static', filename='general/react_17.0.2_umd_react.production.min.js')}}"></script>
+    <script src="{{url_for('static', filename='general/react-dom_17.0.2_umd_react-dom.production.min.js')}}"></script>
+    <script src="{{url_for('static', filename='general/axios_1.4.0_dist_axios.min.js')}}"></script>
+</head>
+<body> 
+    {% block main %}
+    
+    {% endblock %}
+
+    <script src="{{url_for('static', filename='general/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='general/jquery-3.7.0.min.js')}}"></script>
+    <script src="{{url_for('static', filename='general/sortablejs.1.15.0.min.js')}}"></script>
+
+    {% block scripts %}
+
+    {% endblock %}
+</body>
+
+</html>

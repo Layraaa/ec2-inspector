@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Francisco Javier Mestanza Rubia">
+  <meta name="description" content="EC2 login base template">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EC2 Inspector</title>
+  <link href="{{url_for('static', filename='general/ec2inspector.ico')}}" rel="icon"/>
+  <link rel="stylesheet" href="{{url_for('static', filename='login/login.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='general/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='general/fontawesome_all.min.css')}}">
+
+  {% block header %}
+  {% endblock %}
+</head>
+<body>
+  <div class="container">
+    {% block body %}
+
+    {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="row">
+        {% for category, message in messages %}
+          {% if category == 'error' %}
+            <div class="alert alert-danger">
+              {% for segment in message %}
+                {% if segment.bold %}
+                  <strong>{{ segment.text }}</strong>
+                {% else %}
+                  {{ segment.text }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% elif category == 'success' %}
+            <div class="alert alert-success">
+              {% for segment in message %}
+                {% if segment.bold %}
+                  <strong>{{ segment.text }}</strong>
+                {% else %}
+                  {{ segment.text }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info">
+              {% for segment in message %}
+                {% if segment.bold %}
+                  <strong>{{ segment.text }}</strong>
+                {% else %}
+                  {{ segment.text }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+  </div>  
+  {% block secondbody %}
+  {% endblock %}
+  <script src="{{url_for('static', filename='general/popper-2.11.8.min.js')}}"></script>
+  <script src="{{url_for('static', filename='general/bootstrap.min.js')}}"></script>
+  {% block scripts %}
+  {% endblock %}
+  
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+  {% extends 'ec2inspector/base.html' %}
+
+  {% block main %}
+
+  <div id="main-container" class="container-fluid main-container">
+    <div class="row">
+      <div id="header" class="col-12 header d-flex align-items-center text-center">
+        <h1>EC2 Inspector</h1>
+        <div class="spacer"></div>
+        <button type="button" id="detailsvisorbutton" class="btn btn-primary">Go to Visor</button>
+        {% if ssm_enabled == True %}
+          <button type="button" id="visorssmbutton" class="btn btn-primary">Go to SSM</button>
+        {% endif %}
+        <h4 class="divider">Hello, {{ username }}</h4>
+        <div class="spacer"></div>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+      </div>
+    </div>
+    <div id="ec2-details" class="ec2-details row">
+      {% include 'ec2inspector/ec2details.html' %}
+    </div>
+    <div id="ec2-visor" class="ec2-visor row">
+      {% include 'ec2inspector/ec2visor.html' %}
+    </div>
+    {% if ssm_enabled == True %}
+      <div id="ec2-ssm" class="ec2-ssm row">
+        {% include 'ec2inspector/ec2ssm.html' %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div id="alertscontainer">
+    <div id="alerts"></div>
+  </div>
+
+  <div id="overlay" class="d-none"></div>
+  <audio src="{{url_for('static', filename='ec2inspector/notification.mp3')}}" id="audio" controls></audio>
+
+  <footer id="footer" class="col-12 footer text-center">Created by <a href="https://github.com/Layraaa">Layraaa</a> - <a href="https://github.com/Layraaa/ec2-inspector">EC2 Inspector</a> - <span id="date"></span> <span id="clock"></span></footer>
+
+  {% endblock %}
+
+  {% block scripts %}
+
+  <script src="{{url_for('static', filename='ec2inspector/ec2inspector.js')}}"></script>
+  <script src="{{url_for('static', filename='ec2inspector/ec2details.js')}}"></script>
+  <script src="{{url_for('static', filename='ec2inspector/ec2visor.js')}}"></script>
+  {% if ssm_enabled == True %}
+    <script src="{{url_for('static', filename='ec2inspector/ec2ssmquery.js')}}"></script>
+    <script src="{{url_for('static', filename='ec2inspector/ec2ssmmonitor.js')}}"></script>
+    <script src="{{url_for('static', filename='ec2inspector/ec2ssmhistory.js')}}"></script>
+  {% endif %}
+
+  {% endblock %}

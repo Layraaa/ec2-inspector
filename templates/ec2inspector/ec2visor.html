@@ -1,0 +1,138 @@
+<div id="barec2visor" class="barec2visor">
+  <select id="barregions">
+    <option value="" disabled selected>Region</option>
+    <option value="all">All</option>
+    {% for i in range (0, len) %}
+        <option value="{{regions[i]}}">{{regions[i]}}</option>
+    {%endfor%}
+  </select>
+
+  <select id="barvpcs" disabled>
+    <option value="" disabled selected>Vpc</option>
+    <option value="all">All</option>
+  </select>
+
+  <select id="barsubnets" disabled>
+    <option value="" disabled selected>Subnet</option>
+    <option value="all">All</option>
+  </select>
+
+  <select id="barinstances" disabled>
+    <option value="" disabled selected>Instance</option>
+    <option value="all">All</option>
+  </select>
+
+  <button id="getdatainstances" class="button">Get data</button>
+
+  <div id="loader" class="loadericon"></div>
+
+  <button id="exportdata" class="divider">Export data</button>
+
+  <button id="showandhideipsandids">Show instances by IPs</button>
+</div>
+
+<div id="all-instances" class="col-3 all-instances">
+  <h2 class="text-center">Instances</h2>
+  <details id="terminatedinstances">
+    <summary>Terminated instances</summary>
+  </details>
+</div>
+<div id="information" class="col-9 information">
+  <div id="informationpanel" data-region="">
+    <h2 id="informationtext" class="text-center">Information</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <h3 class="col-12">General</h3>
+        <div class="col-4">Instance Id: <span id="idinstance"></span></div>
+        <div class="col-4">Instance type: <span id="instancetype"></span></div>
+        <div class="col-4">State: <span id="state"></span></div>
+        <div class="col-4">State Transition Reason: <span id="statetransitionreason"></span></div>
+        <div class="col-4">Image Id: <span id="imageid"></span></div>
+        <div class="col-4">Ami Launch Index: <span id="amilaunchindex"></span></div>
+        <div class="col-4">Platform: <span id="platformdetails"></span></div>
+        <div class="col-4">Architecture: <span id="architecture"></span></div>
+        <div class="col-4">Launch Time: <span id="launchtime"></span></div>
+        <div class="col-4">Region: <span id="region"></span></div>
+        <div class="col-4">Availability Zone: <span id="placement"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4>Security Groups</h4>
+          <span id="securitygroups"></span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <h3 class="col-12">Network</h3>
+        <div class="col-4">Private DNS Address: <span id="privatednsaddress"></span></div>
+        <div class="col-4">Public DNS Address: <span id="publicdnsaddress"></span></div>
+        <div class="col-4">Private IP Address: <span id="privateipaddress"></span></div>
+        <div class="col-4">Public IP Address: <span id="publicipaddress"></span></div>
+        <div class="col-4">Vpc Id: <span id="vpcid"></span></div>
+        <div class="col-4">Subnet Id: <span id="subnetid"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4>Network Interfaces</h4>
+          <span id="networkinterfaces"></span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <h3 class="col-12">Storage</h3>
+        <div class="col-4">Root Device Name: <span id="rootdevicename"></span></div>
+        <div class="col-4">Root Device Type: <span id="rootdevicetype"></span></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4>Block Device Mappings</h4>
+          <span id="blockdevicemappings"></span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <h3>Tags</h3>
+          <span id="tags"></span>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <h3>SSM</h3>
+          <div class="col-4">SSM Enabled: <span id="ssmenabled"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" id="draggable">▼</div>
+  <div id="additionaldetailspanel">
+    <h3 id="additionaldetailstext" class="text-center">Additional details</h3>
+    <div id="containeradditionaldetailspanel" class="container-fluid"></div>
+  </div>
+</div>
+
+<div id="containerexportdata" class="container-fluid d-none">
+  <div class="row">
+    <div class="col-12">
+      <div class="contentformexportdata">
+        <h2 class="text-center">Export data</h2>
+        <form id="formexportdata">
+          <div class="mb-3">
+            <label class="form-label" for="caseName">Case Name:</label>
+            <input class="form-control" type="text" id="caseName" name="caseName" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="firstName">First Name:</label>
+            <input class="form-control" type="text" id="firstName" name="firstName" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="lastName">Last Name:</label>
+            <input class="form-control" type="text" id="lastName" name="lastName" required>
+          </div>
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

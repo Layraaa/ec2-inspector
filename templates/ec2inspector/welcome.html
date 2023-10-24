@@ -1,0 +1,57 @@
+{% extends 'ec2inspector/base.html' %}
+{% block main %}
+<div class="container">
+    <div class="row my-3">
+        <div class="col-12">
+            <h1 class="text-center login">Welcome to EC2 Inspector, {{ user.username }}</h1>
+            <form action="/ec2inspector" method="POST">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Local user</th>
+                            <th>Profile name</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        {% for profile in user.profiles %}
+                            <tr>
+                                <td>
+                                    <input type="radio" id='{{ profile.local_user_name }}:{{ profile.profile_name }}' name="selectedprofile" value='{{ profile.local_user_name }}:{{ profile.profile_name }}' class="form-check-input">
+                                </td>
+                                <td>
+                                    <label for='{{ profile.local_user_name }}:{{ profile.profile_name }}'>{{ profile.local_user_name }}</label>
+                                </td>
+                                <td>
+                                    <span>{{ profile.profile_name }}</span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary mx-auto" value="Select profile">
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger col-12">
+                            {% for msg in message %}
+                                {{ msg['text'] }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>  
+{% endblock %}

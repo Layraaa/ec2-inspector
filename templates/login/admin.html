@@ -1,0 +1,264 @@
+{% extends 'login/base.html' %}
+
+{% block body %}
+  <div class="row my-3 admin-header">
+    <h1 class="text-center" aria-label="Administration panel for EC2 Inspector">
+      <i class="fas fa-tools"></i> Administration panel <i class="fas fa-tools"></i>
+    </h1>
+  </div>
+  <div class="row my-3 admin-card">
+    <h3 class="text-center">Create users</h3>
+    <form action="/admin_createusers" class="createusers" method="POST">
+      <div class="row align-items-center">
+        <div  class="col-sm usernameblock">
+          <input id="formusername" class="form-control all-corners" type="text" placeholder="Username" id="usernameform" name="username" autocomplete="off" required>
+        </div>
+        <div class="col-sm passwordblock">
+          <div class="d-flex">
+            <input id="formpassword" class="form-control left-corners" type="password" placeholder="Password" name="password" required>
+            <span class="input-group-text right-corners" id="eyefunction">
+              <i class="fas fa-eye" id="show_eye"></i>
+              <i class="fas fa-eye-slash" id="hide_eye"></i>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm d-flex align-items-center ssmtextblock justify-content-center">
+          <label for="ssmpermission" class="createuserstext" data-bs-toggle="tooltip" data-bs-title="Enable to send commands to EC2 instances">Enable SSM?</label>
+          <input type="checkbox" id="ssmpermission" name="ssmpermission">
+        </div>
+        <div class="col-sm text-center">
+          <input class="btn btn-primary" type="submit" value="Create user">
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}
+
+{% block secondbody %}
+<div class="container">
+  <div class="row my-3 admin-card">
+    <div class="headertable">
+      <h3 class="text-center">User list</h3>
+    </div>
+    <table class="table table-hover table-data">
+      <thead>
+        <tr>
+          <th scope="col">EC2 Inspector username</th>
+          <th scope="col">2FA Enabled</th>
+          <th scope="col">SSM Enabled</th>
+          <th scope="col">Delete user</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.username }}</td>
+          {% if user.otp_enabled == True %}
+            <td class="true">{{ user.otp_enabled }}</td>
+          {% else %}
+            <td class="false">{{ user.otp_enabled }}</td>
+          {% endif %}
+          {% if user.ssm_permission == True %}
+            <td class="true">{{ user.ssm_permission}}</td>
+          {% else %}
+            <td class="false">{{ user.ssm_permission }}</td>
+          {% endif %}
+          <td>
+            <form action="/deleteuser" method="POST">
+              <input type="hidden" name="username" value="{{ user.username }}">
+              <button type="submit" class="btn btn-danger icon-x">
+                <div>
+                  <span></span>
+                  <span></span>
+                </div>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="row my-3 admin-card">
+    <div class="d-flex align-items-center headertable">
+      <h3>Profiles</h3>
+      <a href="/updateprofiles" class="btn btn-primary push">Update profile list</a>
+    </div>  
+    <table class="table table-hover table-data">
+      <thead>
+        <tr>
+          <th scope="col">Local username</th>
+          <th scope="col">Profile name</th>
+          <th scope="col">Configuration file path</th>
+          <th scope="col">Default region</th>
+          <th scope="col">Delete profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for profile in profiles %}
+        <tr>
+          <td>{{ profile.local_user_name }}</td>
+          <td>{{ profile.profile_name }}</td>
+          <td>{{ profile.config_directory }}</td>
+          <td>{{ profile.default_region }}</td>
+          <td>
+            <form action="/deleteprofile" method="POST">
+              <input type="hidden" name="profile" value="{{ profile.id }}">
+              <button type="submit" class="btn btn-danger icon-x">
+                <div>
+                  <span></span>
+                  <span></span>
+                </div>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="row my-3 admin-card">
+    <div class="d-flex align-items-center headertable">
+      <h3>Permissions</h3>
+      <a href="/add_permissions" class="btn btn-primary push">Add permissions to a user</a>
+    </div>
+    <table class="table table-hover table-data">
+      <thead>
+          <tr>
+              <th scope="col">EC2 Inspector username</th>
+              <th scope="col">Local username</th>
+              <th scope="col">Profile name</th>
+              <th scope="col">Delete permissions</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for user in users %}
+              {% for profile in user.profiles %}
+                  <tr>
+                      <td>{{ user.username }}</td>
+                      <td>{{ profile.local_user_name }}</td>
+                      <td>{{ profile.profile_name }}</td>
+                      <td>
+                          <form action="/erase_permission" method="POST">
+                            <input type="hidden" name="user" value="{{ user.id }}">
+                            <input type="hidden" name="profile" value="{{ profile.id }}">
+                            <button type="submit" class="btn btn-danger icon-x">
+                              <div>
+                                <span></span>
+                                <span></span>
+                              </div>
+                            </button>
+                          </form>
+                      </td>
+                  </tr>
+              {% endfor %}
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="row my-3 admin-card">
+    <details class="details-card">
+      <summary class="textabout">About EC2 Inspector</summary>
+      <div class="abouttable">
+        <h4 class="headerabout">Python</h4>
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">Version</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for package in packages_version %}
+                <tr>
+                  <td>{{ package.package }}</td>
+                  <td>{{ package.version }}</td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="abouttable">
+        <h4 class="headerabout">JavaScript</h4>
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                <th scope="col">Library</th>
+                <th scope="col">Version</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Axios</td>
+                <td>1.4.0</td>
+              </tr>
+              <tr>
+                <td>Bootstrap</td>
+                <td>5.3.0</td>
+              </tr>
+              <tr>
+                <td>jQuery</td>
+                <td>3.7.0</td>
+              </tr>
+              <tr>
+                <td>Popper</td>
+                <td>2.11.8</td>
+              </tr>
+              <tr>
+                <td>React</td>
+                <td>17.0.2</td>
+              </tr>
+              <tr>
+                <td>sortablejs</td>
+                <td>1.15.0</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="abouttable">
+        <h4 class="headerabout">CSS</h4>
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                <th scope="col">Library</th>
+                <th scope="col">Version</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Bootstrap</td>
+                <td>5.3.0</td>
+              </tr>
+              <tr>
+                <td>Font Awesome</td>
+                <td>6.4.0</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="informationofrepository">
+        <div class="headerabout">
+          <h5>EC2 Inspector version: </h5><h6>1.0</h6>
+        </div>
+        <div class="headerabout">
+          <h5>Github repository: </h5><a href="https://github.com/Layraaa/ec2-inspector"><h6>ahttps://github.com/Layraaa/ec2-inspector</h6></a>
+        </div>
+        <div class="headerabout">
+          <h6>Made by <a href="https://github.com/Layraaa">@Layraaa</a></h6>
+        </div>
+      </div>
+    </details>
+  </div>
+  <div class="row logout">
+    <div class="col-3">
+      <a href="/logout" class="btn btn-danger">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='login/tooltip.js')}}"></script>
+<script src="{{url_for('static', filename='login/form.js')}}"></script>
+<script src="{{url_for('static', filename='login/password.js')}}"></script>
+{% endblock %}

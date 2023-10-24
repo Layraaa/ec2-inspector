@@ -1,0 +1,56 @@
+{% extends "login/base.html" %}
+{% block body %}
+  <div class="row my-5 login">
+    <h1 class="text-center">How to enable 2FA</h1>
+  </div>
+  <div class="row login">
+    <div class="col-6">
+      <div class="row my-2 rowtwofa">
+        <h4 class="headertwofa">Setting Up Two-Factor Authentication (2FA)</h4>
+        <p>Follow these steps to set up 2FA using one of the most common 2FA applications, such as Google Authenticator, Authy, Duo Mobile, and others.</p>
+        <h5 class="headertwofa">Manual Key Entry</h5>
+        <ul>
+          <li>Open your 2FA app.</li>
+          <li>Select "Add Account" or "+".</li>
+          <li>Choose "Enter a setup key" or similar.</li>
+          <li>Enter your account details and the provided key.</li>
+          <li>Select "Add" or "Save" to complete setup.</li>
+        </ul>
+        <h5 class="headertwofa">QR Code Scan</h5>
+        <ul>
+          <li>Open your 2FA app.</li>
+          <li>Select "Add Account" or "+".</li>
+          <li>Select "Scan a barcode" or "Scan QR code".</li>
+          <li>Scan the provided QR code with your device"s camera.</li>
+        </ul>
+        <p>Remember to safely store backup codes or a backup key after setting up 2FA. If you lose it, you can also lose access to your account.</p>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row my-2 rowtwofa text-center">
+        <div class="col-12 my-1">
+          <div class="d-flex justify-content-center">
+            <img id="qrcode" src="data:image/png;base64,{{qr}}" alt="QR Code">
+          </div>
+          <input id="qrbutton" type="button" value="Show QR Code" class="btn btn-primary my-3">
+        </div>
+        <div class="col-12 my-2">
+          <input class="form-control all-corners" type="text" value="{{ secret_key }}" readonly>
+        </div>
+        <div class="col-12 my-2 buttonstwofa">
+          <form action="/setup_otp" method="POST">
+            <input type="hidden" name="activate" value="Yes">
+            <input class="btn btn-primary" type="submit" value="Done" id="submitButton" disabled>
+          </form>
+          <form action="/setup_otp" method="POST">
+            <input type="hidden" name="activate" value="No">
+            <input class="btn btn-primary" type="submit" value="No, thanks">
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static', filename='login/qr.js')}}"></script>
+{% endblock %}

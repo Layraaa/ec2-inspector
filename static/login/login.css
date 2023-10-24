@@ -1,0 +1,288 @@
+body {
+  margin: 5%;
+}
+
+#title{
+  border-bottom: 1px solid #222;
+}
+
+#title h1{
+  margin-bottom: 5%;
+}
+
+.action {
+  margin-top: 15px;
+}
+
+.error {
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+  background-color: lightblue;
+  border-color: #f5c2c7;
+  list-style: none;
+}
+
+#qrcode{
+  display: none;
+}
+
+#submitButton {
+  transition: all 0.4s ease;
+}
+
+#submitButton[disabled] {
+  background-color: #ccc;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Login */
+.login{
+  background-color: lightgrey;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.login * .form-control{
+  box-shadow: 0px 0px 10px rgba(100, 100, 100, 0.5);
+}
+
+.login * .form-control, .login * .input-group-text, .createusers * .form-control, .createusers * .input-group-text{
+  border-radius: 0px;
+}
+
+.all-corners{
+  border-radius: 12px !important;
+}
+
+.left-corners{
+  border-radius: 12px 0px 0px 12px !important;
+}
+
+.right-corners{
+  border-radius: 0px 12px 12px 0px !important;
+}
+
+#eyefunction{
+  cursor: pointer;
+}
+
+#hide_eye{
+  display: none;
+}
+
+.subtitle{
+  font-size: 14px;
+}
+
+.imgcaptcha{
+  border: 2px solid #496D89;
+  border-radius: 20px;
+  margin: 7px;
+  background-color: #496D89;
+}
+
+/* 2FA */
+
+.headertwofa{
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.rowtwofa{
+  padding: 12px;
+}
+
+#qrcode{
+  border: 8px solid white;
+  border-radius: 8px;
+}
+
+.buttonstwofa > form{
+  display: inline;
+}
+
+#otp{
+  text-align: center;
+}
+
+.formotp > * {
+  margin: 7px;
+}
+
+.formotp > label{
+  font-size: 1.1rem;
+}
+
+/* Admin panel */
+
+.push{
+  margin-left: auto;
+}
+
+.createuserstext{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ssmtextblock{
+  gap: 10px;
+}
+
+.admin-header > h1 {
+  font-size: 3em;
+  color: #333;
+  font-weight: bold;
+  text-shadow: 1px 1px #ccc;
+}
+
+.admin-header i {
+  margin-right: 10px;
+  color: black;
+}
+
+.admin-card {
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.07);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.admin-card h3 {
+  margin-bottom: 15px;
+}
+
+.admin-card .table-data th, .admin-card .table-data td {
+  padding: 8px;
+  text-align: left;
+}
+
+.table-data th, .table-data td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table-data thead tr th:last-child, .table-data tbody tr td:last-child{
+  text-align: center;
+}
+
+.admin-card .btn {
+  border-radius: 5px;
+  box-shadow: 0 3px 3px 0 hsla(0, 0%, 0%, 0.10);
+}
+
+.admin-card .form-control, #eyefunction {
+  box-shadow: 0 3px 3px 0 hsla(0, 0%, 0%, 0.10);
+}
+
+.details-card {
+  background-color: #f2f2f2;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.07);
+  padding: 10px;
+}
+
+.details-card summary {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.details-card .table-data th, 
+.details-card .table-data td {
+  padding: 15px;
+  text-align: left;
+}
+
+.headertable{
+  margin-bottom: 5px;
+}
+
+.true {
+  background-color: #90ee90 !important;
+}
+
+.false{
+  background-color: #ff9c9a !important;
+}
+
+.icon-x{
+  padding: 6px !important;
+  width: 34px !important;
+  height: 34px !important;
+}
+
+.icon-x > div {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.icon-x > div span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 2px;
+  background-color: white;
+  transform-origin: center;
+}
+
+.icon-x > div span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.icon-x > div span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.textabout{
+  font-size: 1.40em;
+  font-weight: bold;
+}
+
+.headerabout{
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.abouttable {
+  margin-top: 12.5px;
+  padding: 10px;
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.abouttable thead th, .table-data thead th{
+  background-color: #888;
+  color: #fff;
+}
+
+.abouttable tbody tr:nth-child(even), .tabledata tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.informationofrepository{
+  margin-top: 20px;
+}
+
+/* Multiple choice */
+.field{
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+/* Logout */
+.logout{
+  margin-bottom: 10px;
+}
+
+.logout * .btn{
+  font-size: 1.125em;
+}

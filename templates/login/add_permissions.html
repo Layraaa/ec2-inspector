@@ -1,0 +1,30 @@
+{% extends 'login/base.html' %}
+{% block body %}
+<div class="row my-3">
+    <h1 class="login text-center">Add permisions</h1>
+    <form action="/add_permission" class="login" method="POST" >
+        <div class="form-group d-flex justify-content-between">
+            <div class="field w-50">
+                <label for="user"><h3>Users</h3></label>
+                <select multiple class="form-control" id="user" name="user">
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field w-50">
+                <label for="profiles"><h3>Profiles</h3></label>
+                <select multiple class="form-control" id="profiles" name="profiles">
+                    {% for profile in profiles %}
+                        <option value="{{ profile.id }}">{{ profile.local_user_name }} - {{ profile.profile_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a href="/admin"><button type="button" class="btn btn-danger">Go back</button></a>
+        </div>
+    </form>
+</div>
+{% endblock %}

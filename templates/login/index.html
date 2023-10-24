@@ -1,0 +1,44 @@
+{% extends 'login/base.html' %}
+{% block body %}
+<div class="row my-5">
+  <div class="col-lg-6 col-md-9 col-ms-11 mx-auto">
+    <form action="/login" method="POST" class="login">
+      <div class="text-center">
+        <h1>EC2 Inspector</h1>
+        <p class="subtitle">Where you can inspect your EC2 instances</p>
+      </div>
+      <div class="row my-3 usernameblock">
+        <div class="mx-auto d-flex">
+            <span class="input-group-text left-corners"><i class="fas fa-user"></i></span>
+            <input class="form-control right-corners" type="text" placeholder="Username" id="usernameform" name="username" autocomplete="off" required>
+        </div>
+      </div>
+      <div class="row my-3 passwordblock">
+        <div class="mx-auto d-flex">
+          <span class="input-group-text left-corners"><i class="fas fa-lock"></i></span>
+          <input class="form-control" type="password" placeholder="Password" id="formpassword" name="password" autocomplete="off" required>
+            <span class="input-group-text right-corners" id="eyefunction">
+              <i class="fas fa-eye" id="show_eye"></i>
+              <i class="fas fa-eye-slash" id="hide_eye"></i>
+            </span>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="mx-auto">
+          <label for="captcha"><h5>Complete the Captcha</h5></label>
+          <img class="imgcaptcha" src="{{ 'data:image/png;base64,' ~ captcha }}"  alt="captcha">
+          <input class="form-control all-corners" type="text" placeholder="Captcha" id="captcha" name="captcha" required>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="mx-auto text-center">
+          <input class="btn btn-primary " type="submit" value="Login">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static', filename='login/form.js')}}"></script>
+{% endblock %}

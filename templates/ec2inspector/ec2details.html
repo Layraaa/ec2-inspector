@@ -1,0 +1,45 @@
+<ul id="barec2details" class="barec2details">
+    <li>
+        <select id="barregionsec2details">
+            <option value="" disabled selected>Region</option>
+            {% for i in range (0, len) %}
+                <option value="{{regions[i]}}">{{regions[i]}}</option>
+            {%endfor%}
+        </select>
+    </li>
+    <li class="button" id="getgraphics">Get data</li>
+    <li class="divider button" id="exportgraphics">Export graphics</li>
+    <li class="columndisplay text-center button">Column display
+        <ul class="submenu">
+            <div>
+                <li class="onecol" id="col12"></li>
+            </div>
+            <div>
+                <li class="twocols" id="col6"></li>
+            </div>
+            <div>
+                <li class="threecols" id="col4"></li>
+            </div>
+            <div>
+                <li class="fourcols" id="col3"></li>
+            </div>
+        </ul>
+    </li>
+</ul>
+
+<div class="container-fluid">
+    <div id="graphicsdata" class="row">
+        
+    </div>
+</div>
+
+<div id="loading" class="container-fluid justify-content-center loading">
+    <div class="containerloading row text-center">
+        <div class="col-12">
+            <h1 class="text">Loading...</h1>
+            <div class="containerloader">
+                <span class="loader"></span>
+            </div>
+        </div>
+    </div>
+</div>
