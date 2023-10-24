@@ -16,7 +16,7 @@
 
 <div align="center">
   <a href="https://github.com/Layraaa/ec2-inspector"><img src="https://user-images.githubusercontent.com/107069518/270310929-b6817790-975b-42e3-92fa-7ee92bb5001d.png" alt="EC2 Inspector screenshot"></a>
-  <a href="https://www.youtube.com/watch?v=zMIG6ueuM8w">Video here</a>
+  <a href="https://youtu.be/h29tZwgl7-s">Video here</a>
 </div>
 
 ## Description
