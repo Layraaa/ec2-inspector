@@ -57,12 +57,23 @@ EC2 Inspector is a monitoring and forensic analysis tool. With this tool you wil
 To clone this tool, you'll need [Git](https://git-scm.com) installed. From your command line:
 
 ```bash
-# sudo su
-# git clone https://github.com/Layraaa/ec2-inspector
-# cd ec2-inspector
-# python3 -m venv env
-# source env/bin/activate
-# pip3 install -r requeriments.txt
-# gunicorn -w 12 --preload -b 0.0.0.0:5000 run:app
+sudo su
+git clone https://github.com/Layraaa/ec2-inspector
+cd ec2-inspector
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requeriments.txt
+gunicorn -w 12 --preload -b 0.0.0.0:5000 run:app
+```
+
+For create AWS profile, you'll need awscli or create manually the configuration files. Generate an access keys for IAM users
+
+```bash
+aws configure --profile developer
+
+AWS Access Key ID [None]:
+AWS Secret Access Key [None]:
+Default region name [None]:
+Default output format [None]:
 ```
 ---
